@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Access — Dhwani RIS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --maroon: #8B1A1A;
+      --maroon-dark: #6b1414;
+      --maroon-light: #a82828;
+      --gold: #C8991F;
+      --gold-light: #e8b830;
+      --cream: #FDFBF7;
+      --cream-dark: #f3efe6;
+      --white: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e8e2d8;
+      --border-light: #f0ece4;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* — Nav — */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--maroon);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 52px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .nav-brand {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .nav-brand strong { color: var(--gold-light); }
+    .nav-right {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .nav-updated {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.7rem;
+    }
+    .nav-help {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.72rem; font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .nav-help:hover { background: rgba(255,255,255,0.2); color: white; }
+
+    /* — Hero — */
+    .hero {
+      background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+      color: white;
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* — Search — */
+    .search-wrap {
+      max-width: 520px;
+      margin: -22px auto 0;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+    .search-box {
+      width: 100%;
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 100px;
+      padding: 0.85rem 1.4rem 0.85rem 3rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text);
+      box-shadow: var(--shadow-md);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .search-box::placeholder { color: var(--text-muted); }
+    .search-box:focus {
+      border-color: var(--maroon);
+      box-shadow: 0 4px 16px rgba(139,26,26,0.12);
+    }
+    .search-icon {
+      position: absolute;
+      left: 2.5rem; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    .search-count {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+      min-height: 1.2em;
+    }
+
+    /* — Content — */
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* — Tool Section — */
+    .tool-section {
+      margin-bottom: 3rem;
+    }
+    .tool-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .tool-logo {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .tool-logo.cursor { background: #1a1a1a; color: white; }
+    .tool-logo.claude { background: var(--maroon); color: var(--gold-light); }
+    .tool-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .tool-count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* — Cursor Cards — */
+    .account-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .account-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .account-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #d4cec4;
+    }
+    .account-card.empty {
+      opacity: 0.45;
+    }
+    .account-card.highlight {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(200,153,31,0.15);
+    }
+    .card-email {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      margin-bottom: 0.75rem;
+      word-break: break-all;
+    }
+    .card-owner {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .owner-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--maroon);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .owner-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .owner-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card-members {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+    .member-chip {
+      background: var(--cream-dark);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      transition: background 0.15s;
+    }
+    .member-chip.match {
+      background: rgba(200,153,31,0.2);
+      color: var(--maroon);
+      font-weight: 600;
+    }
+    .empty-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* — Claude Org Cards — */
+    .org-block {
+      margin-bottom: 1.5rem;
+    }
+    .org-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .org-admin-avatar {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      border: 2px solid var(--maroon);
+      color: var(--maroon);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem; font-weight: 700;
+    }
+    .org-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .org-email {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.75rem;
+    }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .team-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #d4cec4;
+    }
+    .team-card.highlight {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(200,153,31,0.15);
+    }
+    .team-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+    .team-leader {
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+    .leader-avatar {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--maroon);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 700;
+    }
+    .leader-info .leader-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .leader-info .leader-role {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .tier-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+    }
+    .tier-badge.max {
+      background: linear-gradient(135deg, var(--maroon), var(--maroon-light));
+      color: white;
+    }
+    .tier-badge.pro {
+      background: var(--cream-dark);
+      color: var(--maroon);
+      border: 1px solid var(--border);
+    }
+
+    /* — Sharing Guide (persistent) — */
+    .guide-section {
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+    }
+    .guide-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .guide-header {
+      background: linear-gradient(90deg, var(--maroon), var(--maroon-dark));
+      color: white;
+      padding: 1.1rem 1.5rem;
+    }
+    .guide-header h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .guide-header p {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      margin-top: 0.15rem;
+    }
+    .guide-body {
+      padding: 1.5rem;
+    }
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .guide-step {
+      position: relative;
+      padding-left: 2.2rem;
+    }
+    .step-num {
+      position: absolute;
+      left: 0; top: 0;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--maroon);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700;
+    }
+    .guide-step h4 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .guide-step p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .guide-tip {
+      margin-top: 1.25rem;
+      background: #fff8ee;
+      border: 1px solid #f0d890;
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.15rem;
+    }
+    .guide-tip h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--maroon);
+      margin-bottom: 0.3rem;
+    }
+    .guide-tip p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* — Footer — */
+    footer {
+      background: var(--maroon-dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.75rem;
+    }
+    footer strong { color: var(--gold-light); }
+    footer a { color: var(--gold-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* — No results — */
+    .no-results {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: none;
+    }
+    .no-results strong {
+      color: var(--text);
+    }
+
+    /* — Mobile — */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .search-wrap { padding: 0 1rem; }
+      .content { padding: 1.5rem 1rem 3rem; }
+      .account-grid, .team-grid { grid-template-columns: 1fr; }
+      .guide-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><strong>Dhwani RIS</strong> &middot; AI Access</div>
+  <div class="nav-right">
+    <span class="nav-updated" id="lastUpdated"></span>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Who has what</h1>
+  <p>The single source of truth for AI tool access at Dhwani RIS. Find your account, your team, your tools.</p>
+</section>
+
+<div class="search-wrap">
+  <span class="search-icon">&#x1F50D;</span>
+  <input type="text" class="search-box" id="searchBox" placeholder="Search by name..." autocomplete="off" />
+  <div class="search-count" id="searchCount"></div>
+</div>
+
+<div class="content">
+  <div class="no-results" id="noResults">
+    No results for <strong id="noResultsQuery"></strong>. Check the spelling or ask your team leader.
+  </div>
+
+  <!-- Cursor Section -->
+  <section class="tool-section" id="cursorSection">
+    <div class="tool-header">
+      <div class="tool-logo cursor">C</div>
+      <div class="tool-name">Cursor</div>
+      <div class="tool-count" id="cursorCount"></div>
+    </div>
+    <div class="account-grid" id="cursorGrid"></div>
+  </section>
+
+  <!-- Claude Section -->
+  <section class="tool-section" id="claudeSection">
+    <div class="tool-header">
+      <div class="tool-logo claude">A</div>
+      <div class="tool-name">Claude</div>
+      <div class="tool-count" id="claudeCount"></div>
+    </div>
+    <div id="claudeOrgs"></div>
+  </section>
+
+  <!-- Sharing Guide — always visible -->
+  <section class="guide-section">
+    <div class="guide-card">
+      <div class="guide-header">
+        <h3>How to get access</h3>
+        <p>Simple steps for everyone at Dhwani RIS</p>
+      </div>
+      <div class="guide-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <h4>Find your name</h4>
+            <p>Search above or scroll through the cards. If your name is listed, you already have access through your team leader.</p>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <h4>Need access?</h4>
+            <p>Talk to your team leader. They manage who is on each account and can add you if there is space.</p>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <h4>Team leaders</h4>
+            <p>To add someone to your account, check capacity first. Then add them and update Ravi or Ankit so this page stays current.</p>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <h4>Questions?</h4>
+            <p>Reach out to Ravi or Ankit on Teams. They manage the accounts centrally.</p>
+          </div>
+        </div>
+        <div class="guide-tip">
+          <h4>Tip: Set up an email forwarding rule</h4>
+          <p>Ask your account owner to set up a forwarding rule on the shared account email (e.g. cursor@dhwaniris.com) so login codes and alerts go to everyone on the account automatically. No more chasing OTPs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p><strong>Dhwani RIS</strong> &middot; AI Access Directory &middot; Managed by Ravi & Ankit</p>
+  <p style="margin-top:0.3rem;">Questions? Reach out on Teams.</p>
+</footer>
+
+<script>
+  const DATA_URL = 'data.json';
+
+  function initials(name) {
+    if (!name) return '?';
+    return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  }
+
+  function matchesSearch(text, query) {
+    return text.toLowerCase().includes(query.toLowerCase());
+  }
+
+  function renderCursorCard(account, query) {
+    const hasOwner = account.owner != null;
+    const members = account.members || [];
+    const isEmpty = !hasOwner && members.length === 0;
+
+    const ownerMatch = query && hasOwner && matchesSearch(account.owner, query);
+    const memberMatches = query ? members.filter(m => matchesSearch(m, query)) : [];
+    const cardMatch = query && (ownerMatch || memberMatches.length > 0);
+
+    if (query && !cardMatch) return { html: '', visible: false, people: 0 };
+
+    const memberChips = members.map(m => {
+      const isMatch = query && matchesSearch(m, query);
+      return `<span class="member-chip${isMatch ? ' match' : ''}">${m}</span>`;
+    }).join('');
+
+    const html = `
+      <div class="account-card${isEmpty ? ' empty' : ''}${cardMatch ? ' highlight' : ''}">
+        <div class="card-email">${account.email}</div>
+        ${hasOwner ? `
+          <div class="card-owner">
+            <div class="owner-avatar">${initials(account.owner)}</div>
+            <div>
+              <div class="owner-name">${account.owner}</div>
+              <div class="owner-label">Account owner</div>
+            </div>
+          </div>
+          ${members.length > 0 ? `<div class="card-members">${memberChips}</div>` : ''}
+        ` : `<div class="empty-label">No one assigned</div>`}
+      </div>
+    `;
+    return { html, visible: true, people: (hasOwner ? 1 : 0) + members.length };
+  }
+
+  function renderTeamCard(team, query) {
+    const leaderMatch = query && matchesSearch(team.leader, query);
+    const memberMatches = query ? team.members.filter(m => matchesSearch(m, query)) : [];
+    const cardMatch = query && (leaderMatch || memberMatches.length > 0);
+
+    if (query && !cardMatch) return { html: '', visible: false, people: 0 };
+
+    const memberChips = team.members.map(m => {
+      const isMatch = query && matchesSearch(m, query);
+      return `<span class="member-chip${isMatch ? ' match' : ''}">${m}</span>`;
+    }).join('');
+
+    const tierHtml = team.tier ? `<span class="tier-badge ${team.tier}">${team.tier}</span>` : '';
+
+    const html = `
+      <div class="team-card${cardMatch ? ' highlight' : ''}">
+        <div class="team-top">
+          <div class="team-leader">
+            <div class="leader-avatar">${initials(team.leader)}</div>
+            <div class="leader-info">
+              <div class="leader-name">${team.leader}</div>
+              <div class="leader-role">Team leader</div>
+            </div>
+          </div>
+          ${tierHtml}
+        </div>
+        ${team.members.length > 0 ? `<div class="card-members">${memberChips}</div>` : '<div class="empty-label">No members</div>'}
+      </div>
+    `;
+    return { html, visible: true, people: 1 + team.members.length };
+  }
+
+  function render(data, query) {
+    let totalVisible = 0;
+    let totalPeople = 0;
+
+    // Cursor
+    const cursorAccounts = data.tools.cursor.accounts;
+    let cursorHtml = '';
+    let cursorPeople = 0;
+    cursorAccounts.forEach(acc => {
+      const result = renderCursorCard(acc, query);
+      cursorHtml += result.html;
+      if (result.visible) cursorPeople += result.people;
+      if (result.visible) totalVisible++;
+    });
+    document.getElementById('cursorGrid').innerHTML = cursorHtml;
+    document.getElementById('cursorCount').textContent = `${cursorAccounts.length} accounts`;
+
+    const cursorVisible = cursorHtml.trim() !== '';
+    document.getElementById('cursorSection').style.display = cursorVisible ? '' : 'none';
+
+    // Claude
+    const claudeOrgs = data.tools.claude.orgs;
+    let claudeHtml = '';
+    let claudeVisible = false;
+    claudeOrgs.forEach(org => {
+      let orgTeamsHtml = '';
+      let orgHasVisible = false;
+
+      org.teams.forEach(team => {
+        const result = renderTeamCard(team, query);
+        orgTeamsHtml += result.html;
+        if (result.visible) {
+          orgHasVisible = true;
+          totalVisible++;
+          totalPeople += result.people;
+        }
+      });
+
+      if (!query || orgHasVisible) {
+        claudeVisible = true;
+        const emailStr = org.email ? `<span class="org-email">${org.email}</span>` : '';
+        claudeHtml += `
+          <div class="org-block">
+            <div class="org-header">
+              <div class="org-admin-avatar">${initials(org.admin)}</div>
+              <span class="org-label">${org.admin}'s org</span>
+              ${emailStr}
+            </div>
+            <div class="team-grid">${orgTeamsHtml}</div>
+          </div>
+        `;
+      }
+    });
+    document.getElementById('claudeOrgs').innerHTML = claudeHtml;
+    document.getElementById('claudeSection').style.display = claudeVisible ? '' : 'none';
+
+    const claudeTeamCount = claudeOrgs.reduce((sum, o) => sum + o.teams.length, 0);
+    document.getElementById('claudeCount').textContent = `${claudeOrgs.length} orgs, ${claudeTeamCount} teams`;
+
+    // No results
+    const noResults = document.getElementById('noResults');
+    if (query && totalVisible === 0) {
+      document.getElementById('noResultsQuery').textContent = query;
+      noResults.style.display = 'block';
+    } else {
+      noResults.style.display = 'none';
+    }
+
+    // Search count
+    const searchCount = document.getElementById('searchCount');
+    if (query) {
+      searchCount.textContent = totalVisible === 0 ? '' : `${totalVisible} match${totalVisible !== 1 ? 'es' : ''} found`;
+    } else {
+      searchCount.textContent = '';
+    }
+
+    // Updated date
+    document.getElementById('lastUpdated').textContent = `Updated ${data.lastUpdated}`;
+  }
+
+  // Init
+  fetch(DATA_URL)
+    .then(r => r.json())
+    .then(data => {
+      render(data, '');
+
+      const searchBox = document.getElementById('searchBox');
+      let debounce;
+      searchBox.addEventListener('input', () => {
+        clearTimeout(debounce);
+        debounce = setTimeout(() => {
+          render(data, searchBox.value.trim());
+        }, 150);
+      });
+    })
+    .catch(err => {
+      document.querySelector('.content').innerHTML = `
+        <div style="text-align:center;padding:4rem 2rem;color:var(--text-muted);">
+          Could not load data. Please refresh or check back later.
+        </div>
+      `;
+    });
+</script>
+
+</body>
+</html>

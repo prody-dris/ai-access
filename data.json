@@ -1,0 +1,107 @@
+{
+  "lastUpdated": "2026-04-06",
+  "tools": {
+    "cursor": {
+      "name": "Cursor",
+      "accounts": [
+        {
+          "id": "account-1",
+          "email": "cursor@dhwaniris.com",
+          "owner": "Abhijit",
+          "members": ["Vivek", "Abhijit", "Ankit A"]
+        },
+        {
+          "id": "account-2",
+          "email": "cursors1@dhwaniris.com",
+          "owner": null,
+          "members": []
+        },
+        {
+          "id": "account-3",
+          "email": "cursors2@dhwaniris.com",
+          "owner": "Anup Shrivastava",
+          "members": ["Anup", "Suraj", "Osama", "Harshit", "Bhanu"]
+        },
+        {
+          "id": "account-4",
+          "email": "cursors3@dhwaniris.com",
+          "owner": "Suresh Mali",
+          "members": ["Suresh", "Aakash", "Vanshika", "Sparsh", "Rohit"]
+        },
+        {
+          "id": "account-5",
+          "email": "cursors4@dhwaniris.com",
+          "owner": "Bhushan B",
+          "members": ["Devang", "Navneet"]
+        },
+        {
+          "id": "account-6",
+          "email": "cursors5@dhwaniris.com",
+          "owner": "Pragat Singh",
+          "members": ["Pragat", "Manish", "Ayushman", "Amit", "Suparva"]
+        },
+        {
+          "id": "account-7",
+          "email": "cursors6@dhwaniris.com",
+          "owner": "Shrey Jain",
+          "members": ["Shrey", "Abhishek", "Raman", "Harsh"]
+        },
+        {
+          "id": "account-8",
+          "email": "cursors402@dhwaniris.com",
+          "owner": "Bhushan B",
+          "members": ["Bhushan"]
+        },
+        {
+          "id": "account-9",
+          "email": "cursors403@dhwaniris.com",
+          "owner": "Bhushan B",
+          "members": ["Hrushikesh", "Ankit Y"]
+        }
+      ]
+    },
+    "claude": {
+      "name": "Claude",
+      "orgs": [
+        {
+          "id": "org-ankit",
+          "email": "ankit.jangir@dhwaniris.com",
+          "admin": "Ankit",
+          "teams": [
+            { "leader": "Harshdeep", "tier": "max", "members": ["Pooja", "Debo"] },
+            { "leader": "Samarth", "tier": "pro", "members": ["Chitranshi", "Mayur"] },
+            { "leader": "Krishna", "tier": "pro", "members": ["Ankit Y"] },
+            { "leader": "Pranati", "tier": "pro", "members": ["Mushkan"] },
+            { "leader": "Rohit", "tier": "pro", "members": ["Sachin", "Rekha"] },
+            { "leader": "Anup", "tier": "max", "members": ["Amandeep", "Harshit"] },
+            { "leader": "Kashish", "tier": "max", "members": ["Pooja S1", "Devaang"] },
+            { "leader": "Ankit", "tier": "max", "members": ["Vikash", "Prakash", "Deepak"] },
+            { "leader": "Abhinav", "tier": "max", "members": ["Harshit"] }
+          ]
+        },
+        {
+          "id": "org-ravi",
+          "email": "ravi.jangir@dhwaniris.com",
+          "admin": "Ravi",
+          "teams": [
+            { "leader": "Sunandan", "tier": "max", "members": ["Nihaan"] },
+            { "leader": "Shweta", "tier": "max", "members": ["Fahim", "Samarth", "Shwentank"] },
+            { "leader": "Akshat", "tier": "pro", "members": ["Sachin QA", "Ritesh"] },
+            { "leader": "Arpita", "tier": "max", "members": ["Aman", "Sunchay", "Naman"] },
+            { "leader": "Aastha", "tier": "max", "members": ["Sunita", "Nagesh", "Sachin M"] },
+            { "leader": "Fathima", "tier": "max", "members": ["Banita", "Bhramjot", "Hardik"] },
+            { "leader": "Ravi", "tier": "pro", "members": [] }
+          ]
+        },
+        {
+          "id": "org-swapnil",
+          "email": null,
+          "admin": "Swapnil",
+          "teams": [
+            { "leader": "Swapnil", "tier": null, "members": ["Aditya G", "Ankit Y", "Ankit A", "Bhushan", "Krishna", "Navneet", "Pooja S", "Pragat", "Samarth", "Suresh", "Vivek"] }
+          ]
+        }
+      ]
+    }
+  }
+}
