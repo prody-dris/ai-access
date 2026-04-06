@@ -73,9 +73,11 @@
             { "leader": "Krishna", "tier": "pro", "members": ["Ankit Y"] },
             { "leader": "Pranati", "tier": "pro", "members": ["Mushkan"] },
             { "leader": "Rohit", "tier": "pro", "members": ["Sachin", "Rekha"] },
-            { "leader": "Anup", "tier": "max", "members": ["Amandeep", "Harshit"] },
+            { "leader": "Anup", "tier": "max", "members": ["Amandeep", "Harshit", "Akash"] },
             { "leader": "Kashish", "tier": "max", "members": ["Pooja S1", "Devaang"] },
-            { "leader": "Ankit", "tier": "max", "members": ["Vikash", "Prakash", "Deepak"] },
+            { "leader": "Ankit Jangir", "tier": "max", "members": ["Vikash", "Prakash", "Deepak"] },
+            { "leader": "Shlok", "tier": "pro", "members": [] },
+            { "leader": "Shushant", "tier": "pro", "members": [] },
             { "leader": "Abhinav", "tier": "max", "members": ["Harshit"] }
           ]
         },
@@ -98,7 +100,7 @@
           "email": null,
           "admin": "Swapnil",
           "teams": [
-            { "leader": "Swapnil", "tier": null, "members": ["Aditya G", "Ankit Y", "Ankit A", "Bhushan", "Krishna", "Navneet", "Pooja S", "Pragat", "Samarth", "Suresh", "Vivek"] }
+            { "leader": "Swapnil", "tier": null, "members": ["Aditya G", "Ankit Y", "Ankit A", "Bhushan", "Krishna", "Navneet", "Pragat", "Samarth", "Suresh", "Vivek"] }
           ]
         }
       ]

@@ -9,457 +9,256 @@
     :root {
       --maroon: #8B1A1A;
       --maroon-dark: #6b1414;
-      --maroon-light: #a82828;
       --gold: #C8991F;
       --gold-light: #e8b830;
       --cream: #FDFBF7;
       --cream-dark: #f3efe6;
       --white: #ffffff;
       --text: #1a1a1a;
-      --text-secondary: #555;
+      --text-mid: #444;
       --text-muted: #888;
       --border: #e8e2d8;
-      --border-light: #f0ece4;
       --radius: 12px;
       --radius-sm: 8px;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--cream); color: var(--text);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
 
-    /* — Nav — */
     nav {
       position: sticky; top: 0; z-index: 100;
       background: var(--maroon);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 52px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      padding: 0 2rem; height: 50px;
     }
-    .nav-brand {
-      color: rgba(255,255,255,0.9);
-      font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.03em;
-    }
+    .nav-brand { color: rgba(255,255,255,0.9); font-size: 0.82rem; font-weight: 600; }
     .nav-brand strong { color: var(--gold-light); }
-    .nav-right {
-      display: flex; align-items: center; gap: 1rem;
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-updated { color: rgba(255,255,255,0.45); font-size: 0.68rem; }
+    .nav-how {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9); font-size: 0.7rem; font-weight: 600;
+      padding: 0.25rem 0.75rem; border-radius: 100px; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
     }
-    .nav-updated {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.7rem;
-    }
-    .nav-help {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.85);
-      font-size: 0.72rem; font-weight: 500;
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .nav-help:hover { background: rgba(255,255,255,0.2); color: white; }
+    .nav-how:hover { background: rgba(255,255,255,0.22); }
 
-    /* — Hero — */
     .hero {
-      background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
-      color: white;
-      padding: 3.5rem 2rem 3rem;
-      text-align: center;
+      background: linear-gradient(135deg, var(--maroon), var(--maroon-dark));
+      color: white; padding: 2.5rem 2rem 2rem;
     }
-    .hero h1 {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
+    .hero-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap;
     }
-    .hero p {
-      font-size: 0.95rem;
-      opacity: 0.75;
-      max-width: 480px;
-      margin: 0 auto;
+    .hero-text h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .hero-text p { font-size: 0.85rem; opacity: 0.7; max-width: 400px; }
+
+    .how-diagram {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      min-width: 280px; max-width: 340px;
+    }
+    .how-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 0.75rem; }
+    .how-flow { display: flex; flex-direction: column; gap: 0.4rem; }
+    .how-step { display: flex; align-items: center; gap: 0.6rem; }
+    .how-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+    }
+    .how-icon.account { background: var(--gold); color: var(--maroon-dark); }
+    .how-icon.leader { background: rgba(255,255,255,0.2); color: white; }
+    .how-icon.member { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); border: 1px dashed rgba(255,255,255,0.3); }
+    .how-label { font-size: 0.75rem; color: rgba(255,255,255,0.85); line-height: 1.3; }
+    .how-label strong { color: white; }
+    .how-arrow { color: var(--gold-light); font-size: 0.7rem; padding-left: 0.9rem; }
+    .how-note {
+      margin-top: 0.6rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.68rem; color: rgba(255,255,255,0.55); line-height: 1.4;
     }
 
-    /* — Search — */
     .search-wrap {
-      max-width: 520px;
-      margin: -22px auto 0;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 10;
+      max-width: 480px; margin: -18px auto 0;
+      padding: 0 1.5rem; position: relative; z-index: 10;
     }
     .search-box {
-      width: 100%;
-      background: var(--white);
-      border: 2px solid var(--border);
-      border-radius: 100px;
-      padding: 0.85rem 1.4rem 0.85rem 3rem;
-      font-size: 0.9rem;
-      font-family: inherit;
-      color: var(--text);
-      box-shadow: var(--shadow-md);
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
+      width: 100%; background: var(--white);
+      border: 2px solid var(--border); border-radius: 100px;
+      padding: 0.75rem 1.2rem 0.75rem 2.6rem;
+      font-size: 0.85rem; font-family: inherit; color: var(--text);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.07); outline: none;
+      transition: border-color 0.2s;
     }
     .search-box::placeholder { color: var(--text-muted); }
-    .search-box:focus {
-      border-color: var(--maroon);
-      box-shadow: 0 4px 16px rgba(139,26,26,0.12);
-    }
+    .search-box:focus { border-color: var(--maroon); }
     .search-icon {
-      position: absolute;
-      left: 2.5rem; top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      pointer-events: none;
+      position: absolute; left: 2.4rem; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 0.85rem; pointer-events: none;
     }
     .search-count {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.6rem;
-      min-height: 1.2em;
+      text-align: center; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; min-height: 1em;
     }
 
-    /* — Content — */
-    .content {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-    }
-
-    /* — Tool Section — */
-    .tool-section {
-      margin-bottom: 3rem;
-    }
+    .content { max-width: 960px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem; }
+    .tool-section { margin-bottom: 2.5rem; }
     .tool-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 2px solid var(--border);
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);
     }
     .tool-logo {
-      width: 36px; height: 36px;
-      border-radius: 10px;
+      width: 30px; height: 30px; border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-weight: 700;
-      flex-shrink: 0;
+      font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
     }
     .tool-logo.cursor { background: #1a1a1a; color: white; }
     .tool-logo.claude { background: var(--maroon); color: var(--gold-light); }
-    .tool-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .tool-count {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-left: auto;
-    }
+    .tool-name { font-size: 1rem; font-weight: 700; }
 
-    /* — Cursor Cards — */
-    .account-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
+    .data-table {
+      width: 100%; border-collapse: collapse; background: var(--white);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; font-size: 0.82rem;
     }
-    .account-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      transition: box-shadow 0.2s, border-color 0.2s;
+    .data-table thead th {
+      background: var(--cream-dark); color: var(--text-mid);
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; padding: 0.65rem 1rem; text-align: left;
+      border-bottom: 2px solid var(--border);
     }
-    .account-card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: #d4cec4;
+    .data-table tbody tr {
+      border-bottom: 1px solid var(--border); transition: background 0.15s;
     }
-    .account-card.empty {
-      opacity: 0.45;
-    }
-    .account-card.highlight {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 2px rgba(200,153,31,0.15);
-    }
-    .card-email {
-      font-size: 0.72rem;
-      color: var(--text-muted);
+    .data-table tbody tr:last-child { border-bottom: none; }
+    .data-table tbody tr:hover { background: #faf8f4; }
+    .data-table tbody tr.highlight { background: rgba(200,153,31,0.08); }
+    .data-table tbody tr.empty-row { opacity: 0.4; }
+    .data-table td { padding: 0.7rem 1rem; vertical-align: top; }
+
+    .email-cell {
       font-family: 'SF Mono', 'Fira Code', monospace;
-      margin-bottom: 0.75rem;
-      word-break: break-all;
+      font-size: 0.72rem; color: var(--text-muted); word-break: break-all;
     }
-    .card-owner {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-    .owner-avatar {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: var(--maroon);
-      color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; font-weight: 700;
-      flex-shrink: 0;
-    }
-    .owner-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .owner-label {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .card-members {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.5rem;
-    }
-    .member-chip {
-      background: var(--cream-dark);
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 0.2rem 0.6rem;
+    .owner-cell { font-weight: 600; color: var(--text); white-space: nowrap; }
+    .member-list { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .member-tag {
+      background: var(--cream-dark); color: var(--text-mid);
+      font-size: 0.72rem; font-weight: 500; padding: 0.15rem 0.5rem;
       border-radius: 100px;
-      transition: background 0.15s;
     }
-    .member-chip.match {
-      background: rgba(200,153,31,0.2);
-      color: var(--maroon);
-      font-weight: 600;
-    }
-    .empty-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    /* — Claude Org Cards — */
-    .org-block {
-      margin-bottom: 1.5rem;
-    }
-    .org-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.75rem;
-    }
-    .org-admin-avatar {
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      background: var(--cream-dark);
-      border: 2px solid var(--maroon);
-      color: var(--maroon);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.55rem; font-weight: 700;
-    }
-    .org-label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .org-email {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      font-family: 'SF Mono', 'Fira Code', monospace;
-    }
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 0.75rem;
-    }
-    .team-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.15rem;
-      transition: box-shadow 0.2s, border-color 0.2s;
-    }
-    .team-card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: #d4cec4;
-    }
-    .team-card.highlight {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 2px rgba(200,153,31,0.15);
-    }
-    .team-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.6rem;
-    }
-    .team-leader {
-      display: flex; align-items: center; gap: 0.45rem;
-    }
-    .leader-avatar {
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      background: var(--maroon);
-      color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.6rem; font-weight: 700;
-    }
-    .leader-info .leader-name {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.2;
-    }
-    .leader-info .leader-role {
-      font-size: 0.62rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
+    .member-tag.match { background: rgba(200,153,31,0.2); color: var(--maroon); font-weight: 600; }
     .tier-badge {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      border-radius: 100px;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; padding: 0.15rem 0.45rem; border-radius: 100px;
+      display: inline-block; margin-left: 0.4rem;
     }
-    .tier-badge.max {
-      background: linear-gradient(135deg, var(--maroon), var(--maroon-light));
-      color: white;
-    }
-    .tier-badge.pro {
-      background: var(--cream-dark);
-      color: var(--maroon);
-      border: 1px solid var(--border);
-    }
+    .tier-badge.max { background: var(--maroon); color: white; }
+    .tier-badge.pro { background: var(--cream-dark); color: var(--maroon); border: 1px solid var(--border); }
+    .empty-text { color: var(--text-muted); font-style: italic; font-size: 0.78rem; }
 
-    /* — Sharing Guide (persistent) — */
-    .guide-section {
-      margin-top: 1rem;
-      margin-bottom: 3rem;
+    .org-label {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin: 1.25rem 0 0.5rem;
     }
-    .guide-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
+    .org-label:first-child { margin-top: 0; }
+    .org-name { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+    .org-email { font-size: 0.68rem; color: var(--text-muted); font-family: 'SF Mono', 'Fira Code', monospace; }
+
+    .guide {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; margin-top: 1rem;
     }
-    .guide-header {
-      background: linear-gradient(90deg, var(--maroon), var(--maroon-dark));
-      color: white;
-      padding: 1.1rem 1.5rem;
+    .guide-bar {
+      background: var(--maroon); color: white;
+      padding: 0.8rem 1.25rem; font-size: 0.85rem; font-weight: 600;
     }
-    .guide-header h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
+    .guide-body { padding: 1.25rem; }
+    .guide-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
     }
-    .guide-header p {
-      font-size: 0.78rem;
-      opacity: 0.75;
-      margin-top: 0.15rem;
-    }
-    .guide-body {
-      padding: 1.5rem;
-    }
-    .guide-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
-    }
-    .guide-step {
-      position: relative;
-      padding-left: 2.2rem;
-    }
-    .step-num {
-      position: absolute;
-      left: 0; top: 0;
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      background: var(--maroon);
-      color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; font-weight: 700;
-    }
-    .guide-step h4 {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .guide-step p {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
+    .guide-item h4 { font-size: 0.8rem; font-weight: 600; color: var(--maroon); margin-bottom: 0.2rem; }
+    .guide-item p { font-size: 0.78rem; color: var(--text-mid); line-height: 1.5; }
     .guide-tip {
-      margin-top: 1.25rem;
-      background: #fff8ee;
-      border: 1px solid #f0d890;
-      border-left: 3px solid var(--gold);
-      border-radius: var(--radius-sm);
-      padding: 1rem 1.15rem;
+      margin-top: 1rem; background: #fff8ee; border: 1px solid #f0d890;
+      border-left: 3px solid var(--gold); border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
     }
-    .guide-tip h4 {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--maroon);
-      margin-bottom: 0.3rem;
-    }
-    .guide-tip p {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
+    .guide-tip h4 { font-size: 0.78rem; font-weight: 600; color: var(--maroon); margin-bottom: 0.2rem; }
+    .guide-tip p { font-size: 0.76rem; color: var(--text-mid); line-height: 1.5; }
 
-    /* — Footer — */
+    .no-results {
+      text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);
+      font-size: 0.88rem; display: none;
+    }
+    .no-results strong { color: var(--text); }
+
     footer {
-      background: var(--maroon-dark);
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 1.5rem 2rem;
-      font-size: 0.75rem;
+      background: var(--maroon-dark); color: rgba(255,255,255,0.55);
+      text-align: center; padding: 1.25rem; font-size: 0.72rem;
     }
     footer strong { color: var(--gold-light); }
-    footer a { color: var(--gold-light); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
 
-    /* — No results — */
-    .no-results {
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.4); align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 16px; max-width: 520px; width: 100%;
+      max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .modal-header {
+      background: var(--maroon); color: white; padding: 1.25rem 1.5rem;
+      border-radius: 16px 16px 0 0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .modal-header h2 { font-size: 1rem; font-weight: 700; }
+    .modal-close {
+      background: none; border: none; color: rgba(255,255,255,0.6);
+      font-size: 1.3rem; cursor: pointer; padding: 0.2rem;
+    }
+    .modal-close:hover { color: white; }
+    .modal-body { padding: 1.5rem; }
+    .modal-step { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .modal-num {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--maroon); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem; font-weight: 700;
+    }
+    .modal-step-text h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .modal-step-text p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.5; }
+    .modal-diagram {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.25rem;
       text-align: center;
-      padding: 3rem 1rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      display: none;
     }
-    .no-results strong {
-      color: var(--text);
+    .modal-diagram-flow {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap;
     }
+    .md-box {
+      padding: 0.5rem 0.8rem; border-radius: var(--radius-sm);
+      font-size: 0.75rem; font-weight: 600; text-align: center;
+    }
+    .md-box.acct { background: var(--maroon); color: white; }
+    .md-box.lead { background: var(--gold); color: var(--maroon-dark); }
+    .md-box.memb { background: var(--cream-dark); color: var(--text-mid); border: 1px dashed var(--border); }
+    .md-arrow { color: var(--text-muted); font-size: 0.8rem; }
+    .modal-diagram-caption { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.6rem; }
 
-    /* — Mobile — */
     @media (max-width: 640px) {
       nav { padding: 0 1rem; }
-      .hero { padding: 2.5rem 1.25rem 2rem; }
-      .search-wrap { padding: 0 1rem; }
-      .content { padding: 1.5rem 1rem 3rem; }
-      .account-grid, .team-grid { grid-template-columns: 1fr; }
-      .guide-steps { grid-template-columns: 1fr; }
+      .hero { padding: 2rem 1.25rem 1.5rem; }
+      .hero-inner { flex-direction: column; }
+      .how-diagram { min-width: unset; max-width: unset; }
+      .content { padding: 1.25rem 0.75rem 2rem; }
+      .data-table { font-size: 0.78rem; }
+      .data-table td, .data-table thead th { padding: 0.5rem 0.6rem; }
+      .guide-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -469,270 +268,235 @@
   <div class="nav-brand"><strong>Dhwani RIS</strong> &middot; AI Access</div>
   <div class="nav-right">
     <span class="nav-updated" id="lastUpdated"></span>
+    <a class="nav-how" href="#" id="openHow">How sharing works</a>
   </div>
 </nav>
 
 <section class="hero">
-  <h1>Who has what</h1>
-  <p>The single source of truth for AI tool access at Dhwani RIS. Find your account, your team, your tools.</p>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Who has what</h1>
+      <p>One page to check your AI tool access. Find your name, see your account, know who to talk to.</p>
+    </div>
+    <div class="how-diagram">
+      <div class="how-title">How sharing works</div>
+      <div class="how-flow">
+        <div class="how-step">
+          <div class="how-icon account">A</div>
+          <div class="how-label"><strong>Account</strong> — owned by Dhwani RIS</div>
+        </div>
+        <div class="how-arrow">&#8595;</div>
+        <div class="how-step">
+          <div class="how-icon leader">TL</div>
+          <div class="how-label"><strong>Team leader</strong> — has direct login</div>
+        </div>
+        <div class="how-arrow">&#8595; magic link forwarded</div>
+        <div class="how-step">
+          <div class="how-icon member">M</div>
+          <div class="how-label"><strong>Members</strong> — get in via forwarded login link</div>
+        </div>
+      </div>
+      <div class="how-note">Team leaders get the login email. They forward the magic link to members. That is how everyone gets in.</div>
+    </div>
+  </div>
 </section>
 
 <div class="search-wrap">
   <span class="search-icon">&#x1F50D;</span>
-  <input type="text" class="search-box" id="searchBox" placeholder="Search by name..." autocomplete="off" />
+  <input type="text" class="search-box" id="searchBox" placeholder="Type your name..." autocomplete="off" />
   <div class="search-count" id="searchCount"></div>
 </div>
 
 <div class="content">
   <div class="no-results" id="noResults">
-    No results for <strong id="noResultsQuery"></strong>. Check the spelling or ask your team leader.
+    No results for <strong id="noResultsQuery"></strong>. Talk to your team leader if you need access.
   </div>
 
-  <!-- Cursor Section -->
   <section class="tool-section" id="cursorSection">
     <div class="tool-header">
       <div class="tool-logo cursor">C</div>
       <div class="tool-name">Cursor</div>
-      <div class="tool-count" id="cursorCount"></div>
     </div>
-    <div class="account-grid" id="cursorGrid"></div>
+    <table class="data-table" id="cursorTable">
+      <thead><tr><th style="width:25%">Account</th><th style="width:20%">Owner</th><th>Members</th></tr></thead>
+      <tbody id="cursorBody"></tbody>
+    </table>
   </section>
 
-  <!-- Claude Section -->
   <section class="tool-section" id="claudeSection">
     <div class="tool-header">
       <div class="tool-logo claude">A</div>
       <div class="tool-name">Claude</div>
-      <div class="tool-count" id="claudeCount"></div>
     </div>
     <div id="claudeOrgs"></div>
   </section>
 
-  <!-- Sharing Guide — always visible -->
-  <section class="guide-section">
-    <div class="guide-card">
-      <div class="guide-header">
-        <h3>How to get access</h3>
-        <p>Simple steps for everyone at Dhwani RIS</p>
+  <section class="guide">
+    <div class="guide-bar">Need access? Here is what to do.</div>
+    <div class="guide-body">
+      <div class="guide-grid">
+        <div class="guide-item">
+          <h4>Already listed?</h4>
+          <p>You have access. Your team leader will forward the login link when needed.</p>
+        </div>
+        <div class="guide-item">
+          <h4>Not listed?</h4>
+          <p>Ask your team leader. They can add you if there is room.</p>
+        </div>
+        <div class="guide-item">
+          <h4>Team leaders</h4>
+          <p>To add someone, check with Ravi or Ankit first. Then update this page through them.</p>
+        </div>
+        <div class="guide-item">
+          <h4>Questions?</h4>
+          <p>Reach out to Ravi or Ankit on Teams.</p>
+        </div>
       </div>
-      <div class="guide-body">
-        <div class="guide-steps">
-          <div class="guide-step">
-            <div class="step-num">1</div>
-            <h4>Find your name</h4>
-            <p>Search above or scroll through the cards. If your name is listed, you already have access through your team leader.</p>
-          </div>
-          <div class="guide-step">
-            <div class="step-num">2</div>
-            <h4>Need access?</h4>
-            <p>Talk to your team leader. They manage who is on each account and can add you if there is space.</p>
-          </div>
-          <div class="guide-step">
-            <div class="step-num">3</div>
-            <h4>Team leaders</h4>
-            <p>To add someone to your account, check capacity first. Then add them and update Ravi or Ankit so this page stays current.</p>
-          </div>
-          <div class="guide-step">
-            <div class="step-num">4</div>
-            <h4>Questions?</h4>
-            <p>Reach out to Ravi or Ankit on Teams. They manage the accounts centrally.</p>
-          </div>
-        </div>
-        <div class="guide-tip">
-          <h4>Tip: Set up an email forwarding rule</h4>
-          <p>Ask your account owner to set up a forwarding rule on the shared account email (e.g. cursor@dhwaniris.com) so login codes and alerts go to everyone on the account automatically. No more chasing OTPs.</p>
-        </div>
+      <div class="guide-tip">
+        <h4>Set up email forwarding</h4>
+        <p>Team leaders: set a forwarding rule on the shared account so login emails go to your members automatically. No more chasing for OTPs or magic links.</p>
       </div>
     </div>
   </section>
 </div>
 
+<div class="modal-overlay" id="howModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>How account sharing works</h2>
+      <button class="modal-close" id="closeHow">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-diagram">
+        <div class="modal-diagram-flow">
+          <div class="md-box acct">Account</div>
+          <div class="md-arrow">&rarr;</div>
+          <div class="md-box lead">Team Leader</div>
+          <div class="md-arrow">&rarr;</div>
+          <div class="md-box memb">Member</div>
+          <div class="md-arrow">&rarr;</div>
+          <div class="md-box memb">Member</div>
+        </div>
+        <div class="modal-diagram-caption">Login goes to the team leader. They forward it to members.</div>
+      </div>
+      <div class="modal-step">
+        <div class="modal-num">1</div>
+        <div class="modal-step-text">
+          <h4>Dhwani owns the account</h4>
+          <p>Each AI tool account belongs to Dhwani RIS. One account is shared by a small group.</p>
+        </div>
+      </div>
+      <div class="modal-step">
+        <div class="modal-num">2</div>
+        <div class="modal-step-text">
+          <h4>Team leader gets the login</h4>
+          <p>When you log in, the tool sends a magic link to the account email. The team leader gets it.</p>
+        </div>
+      </div>
+      <div class="modal-step">
+        <div class="modal-num">3</div>
+        <div class="modal-step-text">
+          <h4>Leader forwards to you</h4>
+          <p>The team leader forwards that link to you. Click it and you are in. No password needed.</p>
+        </div>
+      </div>
+      <div class="modal-step">
+        <div class="modal-num">4</div>
+        <div class="modal-step-text">
+          <h4>Even better: auto-forward</h4>
+          <p>Team leaders can set a forwarding rule so login emails go to all members automatically. No waiting, no chasing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
-  <p><strong>Dhwani RIS</strong> &middot; AI Access Directory &middot; Managed by Ravi & Ankit</p>
-  <p style="margin-top:0.3rem;">Questions? Reach out on Teams.</p>
+  <strong>Dhwani RIS</strong> &middot; AI Access &middot; Managed by Ravi & Ankit &middot; Questions? Ask on Teams.
 </footer>
 
 <script>
-  const DATA_URL = 'data.json';
+  document.getElementById('openHow').addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('howModal').classList.add('open');
+  });
+  document.getElementById('closeHow').addEventListener('click', () => {
+    document.getElementById('howModal').classList.remove('open');
+  });
+  document.getElementById('howModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+  });
 
-  function initials(name) {
-    if (!name) return '?';
-    return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  function match(text, q) { return text.toLowerCase().includes(q.toLowerCase()); }
+
+  function memberTags(members, q) {
+    if (!members.length) return '<span class="empty-text">—</span>';
+    return '<div class="member-list">' + members.map(m =>
+      `<span class="member-tag${q && match(m, q) ? ' match' : ''}">${m}</span>`
+    ).join('') + '</div>';
   }
 
-  function matchesSearch(text, query) {
-    return text.toLowerCase().includes(query.toLowerCase());
-  }
-
-  function renderCursorCard(account, query) {
-    const hasOwner = account.owner != null;
-    const members = account.members || [];
-    const isEmpty = !hasOwner && members.length === 0;
-
-    const ownerMatch = query && hasOwner && matchesSearch(account.owner, query);
-    const memberMatches = query ? members.filter(m => matchesSearch(m, query)) : [];
-    const cardMatch = query && (ownerMatch || memberMatches.length > 0);
-
-    if (query && !cardMatch) return { html: '', visible: false, people: 0 };
-
-    const memberChips = members.map(m => {
-      const isMatch = query && matchesSearch(m, query);
-      return `<span class="member-chip${isMatch ? ' match' : ''}">${m}</span>`;
-    }).join('');
-
-    const html = `
-      <div class="account-card${isEmpty ? ' empty' : ''}${cardMatch ? ' highlight' : ''}">
-        <div class="card-email">${account.email}</div>
-        ${hasOwner ? `
-          <div class="card-owner">
-            <div class="owner-avatar">${initials(account.owner)}</div>
-            <div>
-              <div class="owner-name">${account.owner}</div>
-              <div class="owner-label">Account owner</div>
-            </div>
-          </div>
-          ${members.length > 0 ? `<div class="card-members">${memberChips}</div>` : ''}
-        ` : `<div class="empty-label">No one assigned</div>`}
-      </div>
-    `;
-    return { html, visible: true, people: (hasOwner ? 1 : 0) + members.length };
-  }
-
-  function renderTeamCard(team, query) {
-    const leaderMatch = query && matchesSearch(team.leader, query);
-    const memberMatches = query ? team.members.filter(m => matchesSearch(m, query)) : [];
-    const cardMatch = query && (leaderMatch || memberMatches.length > 0);
-
-    if (query && !cardMatch) return { html: '', visible: false, people: 0 };
-
-    const memberChips = team.members.map(m => {
-      const isMatch = query && matchesSearch(m, query);
-      return `<span class="member-chip${isMatch ? ' match' : ''}">${m}</span>`;
-    }).join('');
-
-    const tierHtml = team.tier ? `<span class="tier-badge ${team.tier}">${team.tier}</span>` : '';
-
-    const html = `
-      <div class="team-card${cardMatch ? ' highlight' : ''}">
-        <div class="team-top">
-          <div class="team-leader">
-            <div class="leader-avatar">${initials(team.leader)}</div>
-            <div class="leader-info">
-              <div class="leader-name">${team.leader}</div>
-              <div class="leader-role">Team leader</div>
-            </div>
-          </div>
-          ${tierHtml}
-        </div>
-        ${team.members.length > 0 ? `<div class="card-members">${memberChips}</div>` : '<div class="empty-label">No members</div>'}
-      </div>
-    `;
-    return { html, visible: true, people: 1 + team.members.length };
-  }
-
-  function render(data, query) {
-    let totalVisible = 0;
-    let totalPeople = 0;
-
-    // Cursor
-    const cursorAccounts = data.tools.cursor.accounts;
-    let cursorHtml = '';
-    let cursorPeople = 0;
-    cursorAccounts.forEach(acc => {
-      const result = renderCursorCard(acc, query);
-      cursorHtml += result.html;
-      if (result.visible) cursorPeople += result.people;
-      if (result.visible) totalVisible++;
+  function renderCursor(accounts, q) {
+    let html = '', count = 0;
+    accounts.forEach(acc => {
+      const oM = q && acc.owner && match(acc.owner, q);
+      const mM = q ? acc.members.filter(m => match(m, q)) : [];
+      if (q && !oM && !mM.length) return;
+      count++;
+      const empty = !acc.owner && !acc.members.length;
+      const cls = [empty ? 'empty-row' : '', q && (oM || mM.length) ? 'highlight' : ''].filter(Boolean).join(' ');
+      html += `<tr class="${cls}">
+        <td class="email-cell">${acc.email}</td>
+        <td class="owner-cell">${acc.owner || '<span class="empty-text">Not assigned</span>'}</td>
+        <td>${acc.members.length ? memberTags(acc.members, q) : '<span class="empty-text">No one yet</span>'}</td>
+      </tr>`;
     });
-    document.getElementById('cursorGrid').innerHTML = cursorHtml;
-    document.getElementById('cursorCount').textContent = `${cursorAccounts.length} accounts`;
+    document.getElementById('cursorBody').innerHTML = html;
+    document.getElementById('cursorSection').style.display = html ? '' : 'none';
+    return count;
+  }
 
-    const cursorVisible = cursorHtml.trim() !== '';
-    document.getElementById('cursorSection').style.display = cursorVisible ? '' : 'none';
-
-    // Claude
-    const claudeOrgs = data.tools.claude.orgs;
-    let claudeHtml = '';
-    let claudeVisible = false;
-    claudeOrgs.forEach(org => {
-      let orgTeamsHtml = '';
-      let orgHasVisible = false;
-
-      org.teams.forEach(team => {
-        const result = renderTeamCard(team, query);
-        orgTeamsHtml += result.html;
-        if (result.visible) {
-          orgHasVisible = true;
-          totalVisible++;
-          totalPeople += result.people;
-        }
+  function renderClaude(orgs, q) {
+    let html = '', count = 0;
+    orgs.forEach(org => {
+      let rows = '', vis = false;
+      org.teams.forEach(t => {
+        const lM = q && match(t.leader, q);
+        const mM = q ? t.members.filter(m => match(m, q)) : [];
+        if (q && !lM && !mM.length) return;
+        vis = true; count++;
+        const tier = t.tier ? `<span class="tier-badge ${t.tier}">${t.tier}</span>` : '';
+        rows += `<tr class="${q && (lM || mM.length) ? 'highlight' : ''}">
+          <td class="owner-cell">${t.leader}${tier}</td>
+          <td>${t.members.length ? memberTags(t.members, q) : '<span class="empty-text">—</span>'}</td>
+        </tr>`;
       });
-
-      if (!query || orgHasVisible) {
-        claudeVisible = true;
-        const emailStr = org.email ? `<span class="org-email">${org.email}</span>` : '';
-        claudeHtml += `
-          <div class="org-block">
-            <div class="org-header">
-              <div class="org-admin-avatar">${initials(org.admin)}</div>
-              <span class="org-label">${org.admin}'s org</span>
-              ${emailStr}
-            </div>
-            <div class="team-grid">${orgTeamsHtml}</div>
-          </div>
-        `;
+      if (!q || vis) {
+        const em = org.email ? ` <span class="org-email">${org.email}</span>` : '';
+        html += `<div class="org-label"><span class="org-name">${org.admin}'s org</span>${em}</div>
+          <table class="data-table"><thead><tr><th style="width:30%">Team Leader</th><th>Members (via magic link)</th></tr></thead><tbody>${rows}</tbody></table>`;
       }
     });
-    document.getElementById('claudeOrgs').innerHTML = claudeHtml;
-    document.getElementById('claudeSection').style.display = claudeVisible ? '' : 'none';
+    document.getElementById('claudeOrgs').innerHTML = html;
+    document.getElementById('claudeSection').style.display = html ? '' : 'none';
+    return count;
+  }
 
-    const claudeTeamCount = claudeOrgs.reduce((sum, o) => sum + o.teams.length, 0);
-    document.getElementById('claudeCount').textContent = `${claudeOrgs.length} orgs, ${claudeTeamCount} teams`;
-
-    // No results
-    const noResults = document.getElementById('noResults');
-    if (query && totalVisible === 0) {
-      document.getElementById('noResultsQuery').textContent = query;
-      noResults.style.display = 'block';
-    } else {
-      noResults.style.display = 'none';
-    }
-
-    // Search count
-    const searchCount = document.getElementById('searchCount');
-    if (query) {
-      searchCount.textContent = totalVisible === 0 ? '' : `${totalVisible} match${totalVisible !== 1 ? 'es' : ''} found`;
-    } else {
-      searchCount.textContent = '';
-    }
-
-    // Updated date
+  function render(data, q) {
+    const t = renderCursor(data.tools.cursor.accounts, q) + renderClaude(data.tools.claude.orgs, q);
+    const nr = document.getElementById('noResults');
+    if (q && !t) { document.getElementById('noResultsQuery').textContent = q; nr.style.display = 'block'; }
+    else nr.style.display = 'none';
+    document.getElementById('searchCount').textContent = q ? (t ? `${t} match${t !== 1 ? 'es' : ''}` : '') : '';
     document.getElementById('lastUpdated').textContent = `Updated ${data.lastUpdated}`;
   }
 
-  // Init
-  fetch(DATA_URL)
-    .then(r => r.json())
-    .then(data => {
-      render(data, '');
-
-      const searchBox = document.getElementById('searchBox');
-      let debounce;
-      searchBox.addEventListener('input', () => {
-        clearTimeout(debounce);
-        debounce = setTimeout(() => {
-          render(data, searchBox.value.trim());
-        }, 150);
-      });
-    })
-    .catch(err => {
-      document.querySelector('.content').innerHTML = `
-        <div style="text-align:center;padding:4rem 2rem;color:var(--text-muted);">
-          Could not load data. Please refresh or check back later.
-        </div>
-      `;
-    });
+  fetch('data.json').then(r => r.json()).then(data => {
+    render(data, '');
+    const box = document.getElementById('searchBox');
+    let d;
+    box.addEventListener('input', () => { clearTimeout(d); d = setTimeout(() => render(data, box.value.trim()), 120); });
+  });
 </script>
-
 </body>
 </html>
