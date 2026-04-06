@@ -8,7 +8,7 @@
           "id": "org-ravi",
           "email": "ravi.jangir@dhwaniris.com",
           "admin": "Ravi Jangir",
-          "label": "Product Team",
+          "label": "Product Department",
           "teams": [
             { "leader": "Sunandan", "tier": "max", "members": ["Nihaan"] },
             { "leader": "Shweta", "tier": "max", "members": ["Fahim", "Samarth", "Shwentank"] },
@@ -23,7 +23,7 @@
           "id": "org-ankit",
           "email": "ankit.jangir@dhwaniris.com",
           "admin": "Ankit Jangir",
-          "label": "Service Team",
+          "label": "Custom / Services Department",
           "teams": [
             { "leader": "Harshdeep", "tier": "max", "members": ["Pooja", "Debo"] },
             { "leader": "Samarth", "tier": "pro", "members": ["Chitranshi", "Mayur"] },
