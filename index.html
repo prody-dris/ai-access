@@ -114,7 +114,6 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
     }
-    .tool-logo.cursor { background: #1a1a1a; color: white; }
     .tool-logo.claude { background: var(--maroon); color: var(--gold-light); }
     .tool-name { font-size: 1rem; font-weight: 700; }
 
@@ -312,17 +311,6 @@
     No results for <strong id="noResultsQuery"></strong>. Talk to your team leader if you need access.
   </div>
 
-  <section class="tool-section" id="cursorSection">
-    <div class="tool-header">
-      <div class="tool-logo cursor">C</div>
-      <div class="tool-name">Cursor</div>
-    </div>
-    <table class="data-table" id="cursorTable">
-      <thead><tr><th style="width:25%">Account</th><th style="width:20%">Owner</th><th>Members</th></tr></thead>
-      <tbody id="cursorBody"></tbody>
-    </table>
-  </section>
-
   <section class="tool-section" id="claudeSection">
     <div class="tool-header">
       <div class="tool-logo claude">A</div>
@@ -436,26 +424,6 @@
     ).join('') + '</div>';
   }
 
-  function renderCursor(accounts, q) {
-    let html = '', count = 0;
-    accounts.forEach(acc => {
-      const oM = q && acc.owner && match(acc.owner, q);
-      const mM = q ? acc.members.filter(m => match(m, q)) : [];
-      if (q && !oM && !mM.length) return;
-      count++;
-      const empty = !acc.owner && !acc.members.length;
-      const cls = [empty ? 'empty-row' : '', q && (oM || mM.length) ? 'highlight' : ''].filter(Boolean).join(' ');
-      html += `<tr class="${cls}">
-        <td class="email-cell">${acc.email}</td>
-        <td class="owner-cell">${acc.owner || '<span class="empty-text">Not assigned</span>'}</td>
-        <td>${acc.members.length ? memberTags(acc.members, q) : '<span class="empty-text">No one yet</span>'}</td>
-      </tr>`;
-    });
-    document.getElementById('cursorBody').innerHTML = html;
-    document.getElementById('cursorSection').style.display = html ? '' : 'none';
-    return count;
-  }
-
   function renderClaude(orgs, q) {
     let html = '', count = 0;
     orgs.forEach(org => {
@@ -473,7 +441,8 @@
       });
       if (!q || vis) {
         const em = org.email ? ` <span class="org-email">${org.email}</span>` : '';
-        html += `<div class="org-label"><span class="org-name">${org.admin}'s org</span>${em}</div>
+        const label = org.label || (org.admin + "'s org");
+        html += `<div class="org-label"><span class="org-name">${label}</span>${em}</div>
           <table class="data-table"><thead><tr><th style="width:30%">Team Leader</th><th>Members (via magic link)</th></tr></thead><tbody>${rows}</tbody></table>`;
       }
     });
@@ -483,7 +452,7 @@
   }
 
   function render(data, q) {
-    const t = renderCursor(data.tools.cursor.accounts, q) + renderClaude(data.tools.claude.orgs, q);
+    const t = renderClaude(data.tools.claude.orgs, q);
     const nr = document.getElementById('noResults');
     if (q && !t) { document.getElementById('noResultsQuery').textContent = q; nr.style.display = 'block'; }
     else nr.style.display = 'none';
